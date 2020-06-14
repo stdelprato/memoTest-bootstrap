@@ -14,7 +14,7 @@ body {
 }
 
 .carta-tapada{
-    background-image: url(/card\ back\ black.png);
+    background-image: url(/card\ back\ black.png) !important;
     background-size: cover;
 }
 
