@@ -1,3 +1,4 @@
+const cartaTapadaStyle = "background-image: url(./dorso-carta.png); background-size: cover;"
 let coordenadasCartas = [[0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11], [12, 13, 14, 15, 16, 17]];
 let cartasClickeadas = [];
 let cartasDisponibles = ["red", "blue", "purple", "green", "black", "pink", "yellow", "aqua", "white"];
@@ -62,11 +63,11 @@ function manejarCartasElegidas(event){
 }
 
 function mostrarCarta(carta){
-    carta.classList.remove("carta-tapada");
+    carta.style = "";
 }
 
 function taparCarta(carta){
-    carta.classList.add("carta-tapada")
+    carta.style = cartaTapadaStyle;
 }
 
 function bloquearInput(){  
