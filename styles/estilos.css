@@ -1,0 +1,56 @@
+:root {
+    --carta-width: 110px;
+}
+
+body {
+    background-color: rgb(59, 59, 59);
+}
+
+.carta {
+    margin: 20px 40px;
+    max-width: var(--carta-width);
+    height: calc(var(--carta-width) * 1.45);
+    background-color: gray;
+}
+
+.carta-tapada{
+    background-image: url(/card\ back\ black.png);
+    background-size: cover;
+}
+
+.blue{
+    background-color: blue;
+}
+
+.black{
+    background-color: black;
+}
+
+.white{
+    background-color: white;
+}
+
+.purple{
+    background-color: purple;
+}
+
+.green{
+    background-color: green;
+}
+
+.red{
+    background-color: red;
+}
+
+.pink{
+    background-color: pink;
+}
+
+.yellow{
+    background-color: yellow;
+}
+
+.aqua{
+    background-color: aqua;
+}
+
