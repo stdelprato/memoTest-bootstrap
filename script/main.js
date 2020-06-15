@@ -3,7 +3,7 @@ const $minutos = document.querySelector(".minutos");
 const $segundos = document.querySelector(".segundos");
 const $intentos = document.querySelector(".intentos-numero");
 let cartasClickeadas = [];
-let cartasDisponibles = ["red", "blue", "purple", "green", "black", "pink", "yellow", "aqua", "white"];
+let cartasDisponibles = ["red", "royalblue", "purple", "green", "black", "pink", "yellow", "aqua", "white", "midnightblue"];
 let cartasUsadasProv = [];
 let timerMemotest;
 let intentos = 0;
@@ -25,7 +25,7 @@ function manejarPartida(){
 }
 
 function resetear(){
-    cartasDisponibles = ["red", "blue", "purple", "green", "black", "pink", "yellow", "aqua", "white"];
+    cartasDisponibles = ["red", "royalblue", "purple", "green", "black", "pink", "yellow", "aqua", "white", "midnightblue"];
     cartasUsadasProv = [];
     cartasClickeadas = [];
     $intentos.textContent = intentos = 0;
@@ -48,7 +48,7 @@ function resetear(){
 
 function ganar(){
     bloquearInput();
-    clearInterval(timerMemotest);
+    cortarTimer(timerMemotest);
 }
 
 function chequearPartidaGanada(){
@@ -84,11 +84,11 @@ function mostrarUnCachoLasCartas(){
 }
 
 function repartirCartas(){
-    for(let i = 0; i < 9; i++){
+    for(let i = 0; i < 10; i++){
         let colorRandom = cartasDisponibles[Math.floor(Math.random() * cartasDisponibles.length)];
 
             for(let i = 0; i < 2; i++){
-                let numeroCartaRandom = Math.floor(Math.random() * 18);
+                let numeroCartaRandom = Math.floor(Math.random() * 20);
                 
                 if(!cartasUsadasProv.includes(numeroCartaRandom)){
                     document.querySelector(`#carta-${numeroCartaRandom}`).classList.add(colorRandom);

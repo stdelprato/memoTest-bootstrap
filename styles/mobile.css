@@ -1,16 +1,23 @@
-@media only screen and (max-width: 640px){
+@media only screen and (max-width: 360px){
     :root {
-        --mobile-height-carta: 90px;
+        --mobile-width-carta: 65px;
     }
 
     .carta{
+        max-width: var(--mobile-width-carta);
+        height: calc(var(--mobile-width-carta) * 1.45);
     }
 
     .container-full {
-        grid-template-columns: 100%;
+        grid-template-columns: 360px;
     }
 
     .container-cartas{
+        grid-template-columns: var(--mobile-width-carta) var(--mobile-width-carta) var(--mobile-width-carta) var(--mobile-width-carta) var(--mobile-width-carta);
+        column-gap: 5px;
+        grid-gap: 5px;
+        margin: 220px 0 0;
+        width: calc(var(--mobile-width-carta) * 5);
     }
 
     .container-menu {
@@ -19,7 +26,7 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 200px;
+        height: 150px;
         width: auto;
         border-bottom: 2px solid rgb(235, 235, 235);
         box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
@@ -27,17 +34,35 @@
 
     .timer {
         position: relative;
-        text-align: right;
-        margin-right: 20px;
+        text-align: left;
+        margin-left: 20px;
+        top: 5px;
     }
 
     .titulo {
         font-size: 20px;
     }
 
-    .intentos {
+    #boton-empezar, #boton-reiniciar {
+        position: relative;
+        left: 160px;
+        bottom: 60px;
+    }
+
+    #boton-empezar:active, #boton-reiniciar:active {
+        position:relative;
+        top: -49px;
+    }
+
+    .intentos-titulo {
+        font-size: 25px;
         position: relative;
         margin-top: 0px;
-        margin-bottom: 40px;
+        bottom: 40px;
+    }
+
+    .intentos-num-div {
+        position: relative;
+        bottom: 50px;
     }
 } 
