@@ -1,4 +1,4 @@
-@media only screen and (max-width: 640px){
+@media (max-width: 720px){
     :root {
         --mobile-width-carta: 65px;
     }
