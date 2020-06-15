@@ -137,12 +137,10 @@ function chequearCartasClickeadas(){
         setTimeout(function(){
             taparCarta(cartasClickeadas[0]);
             taparCarta(cartasClickeadas[1])
-        }, 700);
-
-        setTimeout(function(){
             cartasClickeadas = [];
             desbloquearInput();
-        }, 701);
+        }, 700);
+
         intentos++;
         $intentos.textContent = intentos;
     } else if (cartasClickeadas.length == 2 && cartasClickeadas[0].name == cartasClickeadas[1].name){
