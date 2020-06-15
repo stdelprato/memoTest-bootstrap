@@ -4,9 +4,13 @@
     }
 
     .carta{
-        margin: 10px 10px;
-        max-width: calc(var(--mobile-height-carta));
-        height: var(--mobile-height-carta);
+    }
+
+    .container-full {
+        grid-template-columns: 100%;
+    }
+
+    .container-cartas{
     }
 
     .container-menu {
@@ -15,8 +19,25 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 100px;
+        height: 200px;
+        width: auto;
         border-bottom: 2px solid rgb(235, 235, 235);
         box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+    }
+
+    .timer {
+        position: relative;
+        text-align: right;
+        margin-right: 20px;
+    }
+
+    .titulo {
+        font-size: 20px;
+    }
+
+    .intentos {
+        position: relative;
+        margin-top: 0px;
+        margin-bottom: 40px;
     }
 } 

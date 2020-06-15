@@ -136,7 +136,7 @@ function chequearCartasClickeadas(){
 
         setTimeout(function(){
             taparCarta(cartasClickeadas[0]);
-            taparCarta(cartasClickeadas[1])
+            taparCarta(cartasClickeadas[1]);
             cartasClickeadas = [];
             desbloquearInput();
         }, 700);
@@ -146,8 +146,10 @@ function chequearCartasClickeadas(){
     } else if (cartasClickeadas.length == 2 && cartasClickeadas[0].name == cartasClickeadas[1].name){
         intentos++;
         $intentos.textContent = intentos;
-        cartasClickeadas = [];
-        desbloquearInput();
+        setTimeout(function(){
+            cartasClickeadas = [];
+            desbloquearInput();
+        }, 100);
         chequearPartidaGanada();
     }
 }
