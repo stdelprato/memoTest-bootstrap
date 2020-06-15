@@ -150,7 +150,7 @@ function chequearCartasClickeadas(){
         setTimeout(function(){
             cartasClickeadas = [];
             desbloquearInput();
-        }, 500);
+        }, 150);
         chequearPartidaGanada();
     }
 }
