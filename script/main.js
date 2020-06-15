@@ -148,26 +148,34 @@ function chequearCartasClickeadas(){
     } else if (cartasClickeadas.length == 2 && cartasClickeadas[0].name == cartasClickeadas[1].name){
         intentos++;
         $intentos.textContent = intentos;
-        bloquearInput();
-        setTimeout(function(){
-            cartasClickeadas = [];
-            desbloquearInput();
-        }, 150);
+        cartasClickeadas = [];
         chequearPartidaGanada();
     }
 }
 
 function manejarClickUsuario(){
-    document.querySelectorAll(".carta").forEach(function($carta){
+    document.querySelectorAll(`.carta`).forEach(function($carta){
         $carta.onclick = manejarCartasElegidas;
     })
 }
 
+function estaTapada(carta){
+    if(carta.getAttribute("style") == cartaTapadaStyle){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function manejarCartasElegidas(event){
     const carta = event.target;
-    mostrarCarta(carta);
-    cartasClickeadas.push(carta);
-    chequearCartasClickeadas();
+
+    if(estaTapada(carta)){
+        mostrarCarta(carta);
+        cartasClickeadas.push(carta);
+        chequearCartasClickeadas();
+    }
+
 }
 
 function mostrarCarta(carta){
