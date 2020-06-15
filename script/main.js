@@ -1,12 +1,51 @@
-const cartaTapadaStyle = "background-image: url(./dorso-carta.png); background-size: cover;"
+const cartaTapadaStyle = 'background-image: url("./dorso-carta.png"); background-size: cover;'
 let coordenadasCartas = [[0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11], [12, 13, 14, 15, 16, 17]];
 let cartasClickeadas = [];
 let cartasDisponibles = ["red", "blue", "purple", "green", "black", "pink", "yellow", "aqua", "white"];
 let cartasUsadasProv = [];
 let puntaje = 0;
+let timerMemotest;
+let intentos = 0;
 
-repartirCartas();
-manejarClickUsuario();
+document.querySelector(".boton-empezar").onclick = manejarPartida;
+
+function manejarPartida(){
+    mostrarUnCachoLasCartas();
+    repartirCartas();
+    setTimeout(function(){
+        manejarClickUsuario();
+        empezarTimer();
+    }, 2000);
+}
+
+function ganar(){
+    bloquearInput();
+    clearInterval(timerMemotest);
+}
+
+function chequearPartidaGanada(){
+    let arrayCartasRestantes = [];
+    document.querySelectorAll(".carta").forEach(function(carta){
+        if(carta.getAttribute("style") == cartaTapadaStyle){
+            arrayCartasRestantes.push(carta);
+        }
+    })
+    if(arrayCartasRestantes.length == 0){
+        ganar();
+    }
+}
+
+function mostrarUnCachoLasCartas(){
+    const $cartas = document.querySelectorAll(".carta");
+    $cartas.forEach(function(carta){
+        mostrarCarta(carta);
+    })
+    setTimeout(function(){
+        $cartas.forEach(function(carta){
+            taparCarta(carta);
+        })
+    }, 2000)
+}
 
 function repartirCartas(){
     for(let i = 0; i < 9; i++){
@@ -29,6 +68,34 @@ function repartirCartas(){
     }
 }
 
+function empezarTimer() {
+    const $minutos = document.querySelector(".minutos");
+    let minutos = 0;
+    const $segundos = document.querySelector(".segundos");
+    let segundos = 0;
+    
+    timerMemotest = setInterval(function(){
+        segundos++;
+        if(segundos < 10){
+            $segundos.textContent = "0" + segundos;
+        } else if(segundos > 59){
+            $segundos.textContent = segundos = "00";
+            minutos++;
+            if(minutos < 10){
+                $minutos.textContent = "0" + minutos;
+            } else {
+                $minutos.textContent = minutos;
+            }
+        } else {
+            $segundos.textContent = segundos;
+        }
+    }, 1000)
+}
+
+function cortarTimer(timer){
+    clearInterval(timer);
+}
+
 function chequearCartasClickeadas(){
     if(cartasClickeadas.length == 2 && cartasClickeadas[0].name != cartasClickeadas[1].name){
         bloquearInput();
@@ -42,10 +109,14 @@ function chequearCartasClickeadas(){
             cartasClickeadas = [];
             desbloquearInput();
         }, 701);
+        intentos++;
+        document.querySelector(".intentos-numero").textContent = intentos;
     } else if (cartasClickeadas.length == 2 && cartasClickeadas[0].name == cartasClickeadas[1].name){
-        puntaje++;
+        intentos++;
+        document.querySelector(".intentos-numero").textContent = intentos;
         cartasClickeadas = [];
         desbloquearInput();
+        chequearPartidaGanada();
     }
 }
 
