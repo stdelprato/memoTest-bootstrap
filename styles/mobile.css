@@ -16,8 +16,8 @@
         grid-template-columns: var(--mobile-width-carta) var(--mobile-width-carta) var(--mobile-width-carta) var(--mobile-width-carta) var(--mobile-width-carta);
         column-gap: 5px;
         grid-gap: 5px;
-        margin: 220px 0 0;
-        width: calc(var(--mobile-width-carta) * 5);
+        margin-top: 220px;
+        width: calc((var(--mobile-width-carta) * 5) + 20px);
     }
 
     .container-menu {

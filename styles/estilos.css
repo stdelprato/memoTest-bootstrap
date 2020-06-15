@@ -11,15 +11,20 @@ body {
 }
 
 .container-full {
+    position: absolute;
     display: grid;
     grid-template-columns: 80% 20%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .container-cartas {
     display: grid;
     grid-template-columns: var(--carta-width) var(--carta-width) var(--carta-width) var(--carta-width) var(--carta-width);
-    column-gap: 30px;
-    grid-gap: 20px;
+    column-gap: 5px;
+    grid-gap: 5px;
     margin: auto;
 }
 
