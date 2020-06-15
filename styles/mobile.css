@@ -45,7 +45,8 @@
 
     #boton-empezar, #boton-reiniciar {
         position: relative;
-        left: 160px;
+        float: right;
+        right: 20px;
         bottom: 60px;
     }
 
@@ -57,12 +58,16 @@
     .intentos-titulo {
         font-size: 25px;
         position: relative;
-        margin-top: 0px;
-        bottom: 40px;
+        bottom: 0px;
+        width: 100%;
     }
 
     .intentos-num-div {
         position: relative;
-        bottom: 50px;
+        width: 100%;
+    }
+
+    .intentos-titulo, .intentos-num-div {
+        bottom: 250px;
     }
 } 
