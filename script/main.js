@@ -146,10 +146,11 @@ function chequearCartasClickeadas(){
     } else if (cartasClickeadas.length == 2 && cartasClickeadas[0].name == cartasClickeadas[1].name){
         intentos++;
         $intentos.textContent = intentos;
+        bloquearInput();
         setTimeout(function(){
             cartasClickeadas = [];
             desbloquearInput();
-        }, 100);
+        }, 500);
         chequearPartidaGanada();
     }
 }
