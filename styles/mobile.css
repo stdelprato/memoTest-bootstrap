@@ -9,7 +9,7 @@
     }
 
     .container-full {
-        grid-template-columns: 360px;
+        grid-template-columns: 100%;
     }
 
     .container-cartas{
@@ -36,7 +36,7 @@
         position: relative;
         text-align: left;
         margin-left: 20px;
-        top: 5px;
+        bottom: 5px;
     }
 
     .titulo {
@@ -47,7 +47,7 @@
         position: relative;
         float: right;
         right: 20px;
-        bottom: 60px;
+        bottom: 70px;
     }
 
     #boton-empezar:active, #boton-reiniciar:active {
@@ -58,16 +58,13 @@
     .intentos-titulo {
         font-size: 25px;
         position: relative;
-        bottom: 0px;
+        bottom: 260px;
         width: 100%;
     }
 
     .intentos-num-div {
         position: relative;
         width: 100%;
-    }
-
-    .intentos-titulo, .intentos-num-div {
-        bottom: 250px;
+        bottom: 280px;
     }
 } 

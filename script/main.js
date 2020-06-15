@@ -18,9 +18,11 @@ function manejarPartida(){
     repartirCartas();
     ocultarBotonNombre("empezar");
     mostrarBotonNombre("reiniciar");
+    bloquearInputBotonResetear();
     setTimeout(function(){
         manejarClickUsuario();
         empezarTimer();
+        desbloquearInputBotonResetear();
     }, 2000);
 }
 
@@ -184,6 +186,14 @@ function bloquearInput(){
 
 function desbloquearInput(){
     manejarClickUsuario();
+}
+
+function bloquearInputBotonResetear(){
+    document.querySelector(`#boton-reiniciar`).onclick = "";
+}
+
+function desbloquearInputBotonResetear(){
+    document.querySelector(`#boton-reiniciar`).onclick = resetear;
 }
 
 function mostrarBotonNombre(boton){
