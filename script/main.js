@@ -1,21 +1,49 @@
 const cartaTapadaStyle = 'background-image: url("./dorso-carta.png"); background-size: cover;'
-let coordenadasCartas = [[0, 1, 2, 3, 4, 5], [6, 7, 8, 9, 10, 11], [12, 13, 14, 15, 16, 17]];
+const $minutos = document.querySelector(".minutos");
+const $segundos = document.querySelector(".segundos");
+const $intentos = document.querySelector(".intentos-numero");
 let cartasClickeadas = [];
 let cartasDisponibles = ["red", "blue", "purple", "green", "black", "pink", "yellow", "aqua", "white"];
 let cartasUsadasProv = [];
-let puntaje = 0;
 let timerMemotest;
 let intentos = 0;
+let minutos;
+let segundos;
 
-document.querySelector(".boton-empezar").onclick = manejarPartida;
+document.querySelector("#boton-empezar").onclick = manejarPartida;
+document.querySelector("#boton-reiniciar").onclick = resetear;
 
 function manejarPartida(){
     mostrarUnCachoLasCartas();
     repartirCartas();
+    ocultarBotonNombre("empezar");
+    mostrarBotonNombre("reiniciar");
     setTimeout(function(){
         manejarClickUsuario();
         empezarTimer();
     }, 2000);
+}
+
+function resetear(){
+    cartasDisponibles = ["red", "blue", "purple", "green", "black", "pink", "yellow", "aqua", "white"];
+    cartasUsadasProv = [];
+    cartasClickeadas = [];
+    $intentos.textContent = intentos = 0;
+    $minutos.textContent = minutos = "00";
+    $segundos.textContent = segundos = "00";
+
+    document.querySelectorAll(".carta").forEach(function(carta){
+        taparCarta(carta);
+    })
+
+    sacarleColorCartas();
+
+    ocultarBotonNombre("reiniciar");
+    mostrarBotonNombre("empezar");
+
+    cortarTimer(timerMemotest);
+
+    bloquearInput();
 }
 
 function ganar(){
@@ -33,6 +61,14 @@ function chequearPartidaGanada(){
     if(arrayCartasRestantes.length == 0){
         ganar();
     }
+}
+
+function sacarleColorCartas(){
+    const $cartas = document.querySelectorAll(".carta");
+
+    $cartas.forEach(function(carta){
+        carta.className = "carta";
+    })
 }
 
 function mostrarUnCachoLasCartas(){
@@ -69,10 +105,8 @@ function repartirCartas(){
 }
 
 function empezarTimer() {
-    const $minutos = document.querySelector(".minutos");
-    let minutos = 0;
-    const $segundos = document.querySelector(".segundos");
-    let segundos = 0;
+    minutos = 0;
+    segundos = 0;
     
     timerMemotest = setInterval(function(){
         segundos++;
@@ -110,10 +144,10 @@ function chequearCartasClickeadas(){
             desbloquearInput();
         }, 701);
         intentos++;
-        document.querySelector(".intentos-numero").textContent = intentos;
+        $intentos.textContent = intentos;
     } else if (cartasClickeadas.length == 2 && cartasClickeadas[0].name == cartasClickeadas[1].name){
         intentos++;
-        document.querySelector(".intentos-numero").textContent = intentos;
+        $intentos.textContent = intentos;
         cartasClickeadas = [];
         desbloquearInput();
         chequearPartidaGanada();
@@ -151,21 +185,29 @@ function desbloquearInput(){
     manejarClickUsuario();
 }
 
-function crearRow(n){
-    const $crearRow = document.createElement("div");
-    const $container = document.querySelector(".container")
-    $crearRow.classList.add("row");
-    $crearRow.classList.add(`row-numero-${n}`);
-    $crearRow.classList.add("d-flex");
-
-    $container.appendChild($crearRow);
+function mostrarBotonNombre(boton){
+    document.querySelector(`#boton-${boton}`).classList.remove("oculto");
 }
 
-function crearCarta(){
-    const $crearDiv = document.createElement("div");
-    $crearDiv.classList.add("col-2");
-    $crearDiv.classList.add("carta");
-
-    return $crearDiv;
+function ocultarBotonNombre(boton){
+    document.querySelector(`#boton-${boton}`).classList.add("oculto");
 }
+
+// function crearRow(n){
+//     const $crearRow = document.createElement("div");
+//     const $container = document.querySelector(".container")
+//     $crearRow.classList.add("row");
+//     $crearRow.classList.add(`row-numero-${n}`);
+//     $crearRow.classList.add("d-flex");
+
+//     $container.appendChild($crearRow);
+// }
+
+// function crearCarta(){
+//     const $crearDiv = document.createElement("div");
+//     $crearDiv.classList.add("col-2");
+//     $crearDiv.classList.add("carta");
+
+//     return $crearDiv;
+// }
 
