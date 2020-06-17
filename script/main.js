@@ -3,7 +3,7 @@ const $minutos = document.querySelector(".minutos");
 const $segundos = document.querySelector(".segundos");
 const $intentos = document.querySelector(".intentos-numero");
 let cartasClickeadas = [];
-let cartasDisponibles = ["red", "royalblue", "purple", "green", "black", "pink", "yellow", "aqua", "white", "midnightblue"];
+let cartasDisponibles = ["red", "darkgreen", "purple", "gray", "black", "pink", "yellow", "aqua", "white", "midnightblue"];
 let cartasUsadasProv = [];
 let timerMemotest;
 let intentos = 0;
@@ -27,7 +27,7 @@ function manejarPartida(){
 }
 
 function resetear(){
-    cartasDisponibles = ["red", "royalblue", "purple", "green", "black", "pink", "yellow", "aqua", "white", "midnightblue"];
+    cartasDisponibles = ["red", "darkgreen", "purple", "gray", "black", "pink", "yellow", "aqua", "white", "midnightblue"];
     cartasUsadasProv = [];
     cartasClickeadas = [];
     $intentos.textContent = intentos = 0;
@@ -66,23 +66,16 @@ function chequearPartidaGanada(){
 }
 
 function sacarleColorCartas(){
-    const $cartas = document.querySelectorAll(".carta");
-
-    $cartas.forEach(function(carta){
+    document.querySelectorAll(".carta").forEach(function(carta){
         carta.className = "carta";
     })
 }
 
 function mostrarUnCachoLasCartas(){
-    const $cartas = document.querySelectorAll(".carta");
-    $cartas.forEach(function(carta){
+    document.querySelectorAll(".carta").forEach(function(carta){
         mostrarCarta(carta);
+        setTimeout(function(){taparCarta(carta)}, 2000);
     })
-    setTimeout(function(){
-        $cartas.forEach(function(carta){
-            taparCarta(carta);
-        })
-    }, 2000)
 }
 
 function repartirCartas(){
@@ -160,11 +153,8 @@ function manejarClickUsuario(){
 }
 
 function estaTapada(carta){
-    if(carta.getAttribute("style") == cartaTapadaStyle){
-        return true;
-    } else {
-        return false;
-    }
+    let cartaEstaTapada = carta.getAttribute("style") ? true : false;
+    return cartaEstaTapada;
 }
 
 function manejarCartasElegidas(event){
@@ -175,7 +165,6 @@ function manejarCartasElegidas(event){
         cartasClickeadas.push(carta);
         chequearCartasClickeadas();
     }
-
 }
 
 function mostrarCarta(carta){
@@ -211,22 +200,3 @@ function mostrarBotonNombre(boton){
 function ocultarBotonNombre(boton){
     document.querySelector(`#boton-${boton}`).classList.add("oculto");
 }
-
-// function crearRow(n){
-//     const $crearRow = document.createElement("div");
-//     const $container = document.querySelector(".container")
-//     $crearRow.classList.add("row");
-//     $crearRow.classList.add(`row-numero-${n}`);
-//     $crearRow.classList.add("d-flex");
-
-//     $container.appendChild($crearRow);
-// }
-
-// function crearCarta(){
-//     const $crearDiv = document.createElement("div");
-//     $crearDiv.classList.add("col-2");
-//     $crearDiv.classList.add("carta");
-
-//     return $crearDiv;
-// }
-
